@@ -1,0 +1,15 @@
+#数据库信息
+database:
+  root: "root"
+  password: "xyf1029"
+  host: "localhost"
+  port: 3306
+  dbname: "todolist"
+  charset: "utf8mb4"
+  parseTime: "True"
+  loc: "Local"
+#鉴权信息
+jwt:
+  Issuer: "jaketmoon"
+  Subject: "Tom"
+  SecretKey: "SecretKey"

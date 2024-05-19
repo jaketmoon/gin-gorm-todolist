@@ -1,0 +1,13 @@
+version: "3.1"
+
+services:
+  mysql:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'todolist'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'xyf1029'
+      MYSQL_ROOT_PASSWORD: 'xyf1029'
+    ports:
+      - "3306:3306"
