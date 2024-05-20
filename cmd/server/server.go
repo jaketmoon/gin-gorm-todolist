@@ -25,9 +25,9 @@ func Run() {
 	r := gin.Default()
 	r.Use(log.Init())
 	//告诉gin框架静态文件去哪里找
-	r.Static("/static", "web/static")
+	r.Static("/static", "frontdevelop/static")
 	//告诉gin框架模板文件引用的静态文件去哪里找
-	r.LoadHTMLGlob("web/templates/*")
+	r.LoadHTMLGlob("frontdevelop/templates/*")
 
 	r.GET("/", func(c *gin.Context) {
 		c.HTML(200, "index.html", nil)

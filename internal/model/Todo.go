@@ -15,5 +15,5 @@ type Todo struct {
 	DeletedAt gorm.DeletedAt `gorm:"index" json:"-"`
 	Title     string         `gorm:"varchar(20);not null" json:"title"` //标题
 	Status    bool           `json:"status"`                            //状态
-	//Userid string `gorm:"varchar(20);not null" json:"userid"` //用户id
+	//Userid    string         `gorm:"varchar(20);not null" json:"userid"` //用户id
 }

@@ -5,6 +5,7 @@ import (
 	"gin/internal/global/database"
 	"gin/internal/global/errs"
 	"gin/internal/global/jwt"
+	"gin/internal/global/log"
 	"gin/internal/model"
 	"github.com/gin-gonic/gin"
 )
@@ -35,4 +36,11 @@ func Update(c *gin.Context) {
 		return
 	}
 
+	tx1 := database.DB.Model(&model.User{}).Where("name = ?", load.User).Update("password", NewPassword)
+	if tx1.Error != nil {
+		log.SugarLogger.Error(tx1.Error)
+		errs.Fail(c, errs.DB_CRUD_ERROR.WithTips("修改失败"))
+		return
+	}
+	errs.Success(c, load.User, NewPassword, "请妥善保存你的密码")
 }
