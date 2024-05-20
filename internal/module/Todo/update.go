@@ -23,5 +23,11 @@ func Update(c *gin.Context) {
 	}
 	// 把status取反
 	Todo.Status = !Todo.Status
+	// 将修改保存到数据库
+	if err := database.DB.Save(&Todo).Error; err != nil {
+		errs.Fail(c, errs.DB_BASE_ERROR.WithOrigin(err))
+		log.SugarLogger.Error(err)
+		return
+	}
 	errs.Success(c, "更新代办事项为", Todo)
 }
