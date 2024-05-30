@@ -1,2 +1,12 @@
 {"level":"ERROR","ts":"2024-05-05T19:24:57.213+0800","caller":"Todo/delete.go:20","msg":"record not found"}
 {"level":"ERROR","ts":"2024-05-05T20:57:11.530+0800","caller":"Todo/update.go:20","msg":"record not found"}
+{"level":"ERROR","ts":"2024-05-20T10:05:22.379+0800","caller":"Todo/update.go:21","msg":"record not found"}
+{"level":"ERROR","ts":"2024-05-20T10:05:29.236+0800","caller":"Todo/update.go:21","msg":"record not found"}
+{"level":"ERROR","ts":"2024-05-20T15:53:29.961+0800","caller":"User/register.go:15","msg":"parsing time \"20041029\" as \"2006-01-02T15:04:05Z07:00\": cannot parse \"1029\" as \"-\""}
+{"level":"ERROR","ts":"2024-05-20T15:57:49.551+0800","caller":"User/register.go:15","msg":"json: cannot unmarshal string into Go struct field User.age of type int"}
+{"level":"ERROR","ts":"2024-05-21T14:05:30.663+0800","caller":"User/register.go:15","msg":"json: cannot unmarshal string into Go struct field User.age of type int"}
+{"level":"ERROR","ts":"2024-05-21T14:14:48.479+0800","caller":"User/register.go:15","msg":"json: cannot unmarshal string into Go struct field User.birthday of type int64"}
+{"level":"ERROR","ts":"2024-05-21T14:16:05.199+0800","caller":"User/register.go:15","msg":"json: cannot unmarshal string into Go struct field User.birthday of type int64"}
+{"level":"ERROR","ts":"2024-05-30T16:17:43.376+0800","caller":"Todo/add.go:21","msg":"Error 1364 (HY000): Field 'userid' doesn't have a default value"}
+{"level":"ERROR","ts":"2024-05-30T17:24:05.712+0800","caller":"middleware/Auth.go:26","msg":"invalid token format,you need add bearer"}
+{"level":"ERROR","ts":"2024-05-30T17:24:30.090+0800","caller":"middleware/Auth.go:26","msg":"invalid token format,you need add bearer"}

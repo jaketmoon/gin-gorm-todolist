@@ -13,7 +13,7 @@ type Todo struct {
 	CreatedAt time.Time      `json:"-"`
 	UpdatedAt time.Time      `json:"-"`
 	DeletedAt gorm.DeletedAt `gorm:"index" json:"-"`
-	Title     string         `gorm:"varchar(20);not null" json:"title"` //标题
-	Status    bool           `json:"status"`                            //状态
-	//Userid    string         `gorm:"varchar(20);not null" json:"userid"` //用户id
+	Title     string         `gorm:"varchar(20);not null" json:"title"`  //标题
+	Status    bool           `json:"status"`                             //状态
+	Userid    string         `gorm:"varchar(20);not null" json:"userid"` //用户uid
 }

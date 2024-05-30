@@ -1,11 +1,14 @@
 package User
 
-import "github.com/gin-gonic/gin"
+import (
+	"gin/internal/global/middleware"
+	"github.com/gin-gonic/gin"
+)
 
 func (u *ModuleUser) InitRouter(r *gin.RouterGroup) {
 	r.POST("/register", Register)
 	r.POST("/login", Login)
-	r.PUT("/update", Update)
-	r.GET("/read", Read)
-	r.DELETE("/delete", Delete)
+	r.PUT("/update", middleware.Auth(), Update)
+	r.GET("/read", middleware.Auth(), Read)
+	r.DELETE("/delete", middleware.Auth(), Delete)
 }

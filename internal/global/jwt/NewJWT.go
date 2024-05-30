@@ -27,7 +27,11 @@ func NewToken(name string) (string, error) {
 			ExpiresAt: jwt.NewNumericDate(time.Now().Add(time.Hour * 24)), // jwt.NewNumericDate 可以创建一个符合JWT标准的时间格式,这里是24小时
 		},
 	}
-	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims) //创建一个新的令牌,这里是HS256算法,claims是一个对象
 	tokenString, err := token.SignedString([]byte(configs.JwtSettings.SecretKey))
-	return tokenString, err
+	if err != nil {
+		return "", err
+	}
+
+	return tokenString, nil
 }

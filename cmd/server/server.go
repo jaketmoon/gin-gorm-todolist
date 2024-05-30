@@ -6,6 +6,7 @@ import (
 	"gin/internal/global/casbin"
 	"gin/internal/global/database"
 	"gin/internal/global/log"
+	"gin/internal/global/middleware"
 	"gin/internal/module"
 	"github.com/gin-gonic/gin"
 )
@@ -21,9 +22,8 @@ func Init() {
 }
 
 func Run() {
-	//r := gin.New()
-	r := gin.Default()
-	r.Use(log.Init())
+	r := gin.New()
+	r.Use(log.Init(), middleware.Recovery())
 	//告诉gin框架静态文件去哪里找
 	r.Static("/static", "frontdevelop/static")
 	//告诉gin框架模板文件引用的静态文件去哪里找

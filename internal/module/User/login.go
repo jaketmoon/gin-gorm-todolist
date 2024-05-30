@@ -25,5 +25,6 @@ func Login(c *gin.Context) {
 		errs.Fail(c, errs.UNTHORIZATION.WithOrigin(err))
 		return
 	}
+	c.Header("Authorization", "Bearer "+token)
 	errs.Success(c, v2, map[string]string{"token": token})
 }
