@@ -20,7 +20,7 @@ func Login(c *gin.Context) {
 		errs.Fail(c, errs.LOGIN_ERROR.WithTips("密码错误"))
 		return
 	}
-	token, err := jwt.NewToken(name)
+	token, err := jwt.NewToken(name, v2.ID)
 	if err != nil {
 		errs.Fail(c, errs.UNTHORIZATION.WithOrigin(err))
 		return

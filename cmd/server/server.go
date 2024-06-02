@@ -31,7 +31,7 @@ func Run() {
 
 	r.GET("/", func(c *gin.Context) {
 		c.HTML(200, "index.html", nil)
-
+		c.HTML(200, "todo.html", nil)
 	})
 	for _, m := range module.Modules {
 		fmt.Println("InitRouter: " + m.GetName())

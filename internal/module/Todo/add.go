@@ -3,6 +3,7 @@ package Todo
 import (
 	"gin/internal/global/database"
 	"gin/internal/global/errs"
+	"gin/internal/global/jwt"
 	"gin/internal/global/log"
 	"gin/internal/model"
 	"github.com/gin-gonic/gin"
@@ -15,7 +16,7 @@ func Add(c *gin.Context) {
 		log.SugarLogger.Error(err)
 		return
 	}
-
+	Todo.Userid = jwt.Getcurrentuser(c).ID
 	if err := database.DB.Create(&Todo).Error; err != nil {
 		errs.Fail(c, errs.DB_CRUD_ERROR.WithOrigin(err))
 		log.SugarLogger.Error(err)

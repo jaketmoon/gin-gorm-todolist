@@ -3,6 +3,7 @@ package Todo
 import (
 	"gin/internal/global/database"
 	"gin/internal/global/errs"
+	"gin/internal/global/jwt"
 	"gin/internal/global/log"
 	"gin/internal/model"
 	"github.com/gin-gonic/gin"
@@ -10,7 +11,11 @@ import (
 
 func Read(c *gin.Context) {
 	var todolist []model.Todo
-	if err := database.DB.Find(&todolist).Error; err != nil {
+	//从payload中获取userid
+	payload, _ := c.Get("Payload")
+	load := payload.(*jwt.Mycustomclaims)
+	userid := load.Userid
+	if err := database.DB.Where("userid=?", userid).Find(&todolist).Error; err != nil {
 		errs.Fail(c, errs.DB_CRUD_ERROR.WithOrigin(err))
 		log.SugarLogger.Error(err)
 		return

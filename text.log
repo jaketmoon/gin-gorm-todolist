@@ -10,3 +10,8 @@
 {"level":"ERROR","ts":"2024-05-30T16:17:43.376+0800","caller":"Todo/add.go:21","msg":"Error 1364 (HY000): Field 'userid' doesn't have a default value"}
 {"level":"ERROR","ts":"2024-05-30T17:24:05.712+0800","caller":"middleware/Auth.go:26","msg":"invalid token format,you need add bearer"}
 {"level":"ERROR","ts":"2024-05-30T17:24:30.090+0800","caller":"middleware/Auth.go:26","msg":"invalid token format,you need add bearer"}
+{"level":"ERROR","ts":"2024-05-30T19:34:18.530+0800","caller":"User/read.go:29","msg":"record not found"}
+{"level":"ERROR","ts":"2024-06-02T15:04:23.975+0800","caller":"middleware/Auth.go:26","msg":"token has invalid claims: token is expired"}
+{"level":"ERROR","ts":"2024-06-02T15:05:20.522+0800","caller":"middleware/Auth.go:26","msg":"token has invalid claims: token is expired"}
+{"level":"ERROR","ts":"2024-06-02T18:48:47.138+0800","caller":"jwt/getuser.go:22","msg":"record not found"}
+{"level":"ERROR","ts":"2024-06-02T18:48:47.187+0800","caller":"User/read.go:18","msg":"record not found"}

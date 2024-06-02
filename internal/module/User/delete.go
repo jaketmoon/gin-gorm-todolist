@@ -11,22 +11,17 @@ import (
 
 func Delete(c *gin.Context) {
 	password := c.PostForm("password")
+	var user model.User
 	// 从token中获取用户信息
-	payload, exists := c.Get("Payload")
-	if !exists {
-		errs.Fail(c, errs.UNTHORIZATION.WithTips("没有token，没有权限修改"))
-		return
-	}
-	load := payload.(*jwt.Mycustomclaims)
+	user = jwt.Getcurrentuser(c)
 	// 检查用户权限
-	ok := casbin.GetEnforce().CheckUserPolicyForRead(load.User, "users", "write")
+	ok := casbin.GetEnforce().CheckUserPolicyForRead(user.Name, "users", "write")
 	if !ok {
 		errs.Fail(c, errs.UNTHORIZATION.WithTips("没有权限修改"))
 		return
 	}
 	// 删除用户
-	var user model.User
-	tx := database.DB.Where("name = ?", load.User).First(&user)
+	tx := database.DB.Where("id = ?", user.ID).First(&user)
 	if tx.Error != nil {
 		errs.Fail(c, errs.DB_CRUD_ERROR.WithTips("该用户不存在"))
 	}

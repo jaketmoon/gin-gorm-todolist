@@ -13,19 +13,14 @@ import (
 func Update(c *gin.Context) {
 	password := c.PostForm("OldPassword")
 	NewPassword := c.PostForm("NewPassword")
-	payload, exists := c.Get("Payload")
-	if !exists {
-		errs.Fail(c, errs.LOGIN_ERROR.WithTips("没有token，没有权限修改"))
-		return
-	}
-	load := payload.(*jwt.Mycustomclaims)
-	ok := casbin.GetEnforce().CheckUserPolicyForRead(load.User, "users", "write")
+	var user model.User
+	user = jwt.Getcurrentuser(c)
+	ok := casbin.GetEnforce().CheckUserPolicyForRead(user.Name, "users", "write")
 	if !ok {
 		errs.Fail(c, errs.UNTHORIZATION.WithTips("你的身份没有权限修改"))
 		return
 	}
-	var user model.User
-	tx := database.DB.Where("name = ?", load.User).First(&user)
+	tx := database.DB.Where("id = ?", user.ID).First(&user)
 	if tx.Error != nil {
 		errs.Fail(c, errs.DB_CRUD_ERROR.WithTips("该用户不存在"))
 		return
@@ -36,11 +31,11 @@ func Update(c *gin.Context) {
 		return
 	}
 
-	tx1 := database.DB.Model(&model.User{}).Where("name = ?", load.User).Update("password", NewPassword)
+	tx1 := database.DB.Model(&model.User{}).Where("name = ?", user.Name).Update("password", NewPassword)
 	if tx1.Error != nil {
 		log.SugarLogger.Error(tx1.Error)
 		errs.Fail(c, errs.DB_CRUD_ERROR.WithTips("修改失败"))
 		return
 	}
-	errs.Success(c, load.User, NewPassword, "请妥善保存你的密码")
+	errs.Success(c, user, NewPassword, "请妥善保存你的密码")
 }

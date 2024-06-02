@@ -27,7 +27,7 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
             // 保存token到localStorage 或 sessionStorge
             localStorage.setItem('token', data.token);
             // 跳转到待办事项页面
-            window.location.href = 'todo.html';
+            window.location.href = '../templates/todo.html';
         })
         .catch(error => {
             // 登录失败的操作
